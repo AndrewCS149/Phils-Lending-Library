@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using static PhilsLendingLibrary.Program;
 using static PhilsLendingLibrary.Classes.Book;
+using System.Threading;
 
 namespace PhilsLendingLibrary.Classes
 {
@@ -20,8 +21,7 @@ namespace PhilsLendingLibrary.Classes
                 option = Console.ReadLine();
                 Selection(option, library, bookBag);
             }
-
-            Console.WriteLine("Thank you for using Phil's Lending Library!");
+            ExitMessage();
         }
 
         /// <summary>
@@ -62,6 +62,21 @@ namespace PhilsLendingLibrary.Classes
                     ViewBookBag(bookBag);
                     break;
             }
+        }
+
+        /// <summary>
+        /// Friendly goodbye message
+        /// </summary>
+        private static void ExitMessage()
+        {
+            string goodBye = "Thank you for using Phil's Lending Library!\nHave a nice day.";
+
+            for (int i = 0; i < goodBye.Length; i++)
+            {
+                Console.Write(goodBye[i]);
+                Thread.Sleep(50);
+            }
+            Console.ReadLine();
         }
     }
 }

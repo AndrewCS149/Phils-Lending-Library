@@ -63,7 +63,7 @@ namespace PhilsLendingLibrary.Classes
             // validate page input
             int pages;
             bool validInput = Int32.TryParse(pageInput, out pages);
-            while(!validInput || pages <= 0)
+            while (!validInput || pages <= 0)
             {
                 Console.WriteLine("Invalid input");
                 Console.Write("Enter the number of pages: ");
@@ -193,21 +193,51 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="bookBag">Book bag to remove from</param>
         public static void ReturnBook(Library<Book> library, List<Book> bookBag)
         {
-            Dictionary<int, Book> books = new Dictionary<int, Book>();
-            Console.WriteLine("Which book would you like to return");
-            int counter = 1;
-            foreach (var item in bookBag)
+            // If book bag is empty
+            if (bookBag.Count == 0)
             {
-                books.Add(counter, item);
-                Console.WriteLine($"{counter++}. {item.Title} - {item.Author.FirstName} {item.Author.LastName}");
+                Console.Clear();
+                Console.WriteLine("Your book bag is empty.");
+                Thread.Sleep(2500);
+                Console.Clear();
+            }
+            // if book bag is not empty
+            else
+            {
+                // create key value pair dict
+                Dictionary<int, Book> books = new Dictionary<int, Book>();
+                Console.WriteLine("Which book would you like to return");
+                int counter = 1;
 
+                // display all items in book bag
+                foreach (var item in bookBag)
+                {
+                    books.Add(counter, item);
+                    Console.WriteLine($"{counter++}. {item.Title} - {item.Genre} - {item.Author.FirstName} {item.Author.LastName}");
+
+                }
+
+                // store user choice
+                string response = Console.ReadLine();
+                int.TryParse(response, out int selection);
+                bool inBag = books.TryGetValue(selection, out Book returnedBook);
+
+                // while user chooses an invalid option
+                while (!inBag)
+                {
+                    Console.WriteLine("Invalid selection");
+                    Console.WriteLine("Which book would you like to return");
+                    response = Console.ReadLine();
+                    int.TryParse(response, out selection);
+                    inBag = books.TryGetValue(selection, out returnedBook);
+                }
+
+                // Use library Remove() to remove the book from the book bag
+                bookBag.Remove(returnedBook);
+                // Add the book back to library
+                library.Add(returnedBook);
             }
 
-            string response = Console.ReadLine();
-            int.TryParse(response, out int selection);
-            books.TryGetValue(selection, out Book returnedBook);
-            bookBag.Remove(returnedBook);
-            library.Add(returnedBook);
         }
     }
 }

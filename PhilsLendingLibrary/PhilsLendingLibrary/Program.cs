@@ -19,7 +19,7 @@ namespace PhilsLendingLibrary
             Library<Book> library = new Library<Book>();
 
             LoadBooks(library);
-            DisplayMenu(library, bookBag);
+            StartApplication(library, bookBag);
         }
 
         /// <summary>

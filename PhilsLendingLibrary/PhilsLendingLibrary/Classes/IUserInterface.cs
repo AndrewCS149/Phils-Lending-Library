@@ -10,7 +10,7 @@ namespace PhilsLendingLibrary.Classes
         /// <summary>
         /// Displays the menu to the user
         /// </summary>
-        public static void DisplayMenu(Library<Book> library, List<Book> bookBag)
+        public static void StartApplication(Library<Book> library, List<Book> bookBag)
         {
             string option = "";
             while (option != "6")
@@ -51,7 +51,6 @@ namespace PhilsLendingLibrary.Classes
                     break;
                 case "2":
                     GetBookDetails(library);
-                    Console.WriteLine("Add book");
                     break;
                 case "3":
                     GetBookBagDetails(library, bookBag);

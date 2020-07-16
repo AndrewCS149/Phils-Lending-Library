@@ -21,17 +21,22 @@ namespace PhilsLendingLibrary.Classes
             items[count++] = item;
         }
 
+        public int Count()
+        {
+            return count;
+        }
+
+        public void Remove(string title)
+        {
+
+        }
+
         public IEnumerator<Book> GetEnumerator()
         {
             for (int i = 0; i < count; i++)
             {
                 yield return items[i];
             }
-        }
-
-        public int Count()
-        {
-            return count;
         }
 
         IEnumerator IEnumerable.GetEnumerator()

@@ -32,15 +32,13 @@ namespace PhilsLendingLibrary
         {
             foreach (Book book in library)
             {
-                if(book.Title == title)
+                if(book.Title.ToLower() == title.ToLower())
                 {
-                    Book newBook = new Book();
-                    newBook.Title = title;
-                    bookBag.Add(newBook);
+                    bookBag.Add(book);
+                    return;
                 }
-                else
-                    Console.WriteLine("That book isn't in our library".);
             }
+            Console.WriteLine("That book isn't in our library");
         }
 
         /// <summary>
@@ -104,25 +102,5 @@ namespace PhilsLendingLibrary
             library.Add(book2);
             library.Add(book3);
         }
-
-
-        //static void ReturnBook(List<Book> bookBag, Library<Book> library)
-        //{
-        //    Dictionary<int, Book> books = new Dictionary<int, Book>();
-        //    Console.WriteLine("Which book would you like to return");
-        //    int counter = 1;
-        //    foreach (var item in bookBag)
-        //    {
-        //        books.Add(counter, item);
-        //        Console.WriteLine($"{counter++}. {item.Title} - {item.Author.FirstName} {item.Author.LastName}");
-
-        //    }
-
-        //    string response = Console.ReadLine();
-        //    int.TryParse(response, out int selection);
-        //    books.TryGetValue(selection, out Book returnedBook);
-        //    bookBag.Remove(returnedBook);
-        //    library.Add(returnedBook);
-        //}
     }
 }

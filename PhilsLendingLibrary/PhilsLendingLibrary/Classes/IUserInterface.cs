@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using static PhilsLendingLibrary.Program;
+using static PhilsLendingLibrary.Classes.Book;
 
 namespace PhilsLendingLibrary.Classes
 {
@@ -56,7 +57,7 @@ namespace PhilsLendingLibrary.Classes
                     GetBookBagDetails(library, bookBag);
                     break;
                 case "4":
-                    Console.WriteLine("Return");
+                    ReturnBook(library, bookBag);
                     break;
                 case "5":
                     ViewBookBag(bookBag);
@@ -92,45 +93,6 @@ namespace PhilsLendingLibrary.Classes
             int pages = int.Parse(Console.ReadLine());
 
             AddABook(title, first, last, pages, library);
-        }
-
-        /// <summary>
-        /// Adds a book to the users current library
-        /// </summary>
-        /// <param name="title">Title of book</param>
-        /// <param name="firstName">First name of author</param>
-        /// <param name="lastName">Last name of author</param>
-        /// <param name="numberOfPages">Number of pages</param>
-        /// <param name="library">Library to add book to</param>
-        static void AddABook(string title, string firstName, string lastName, int numberOfPages, Library<Book> library)
-        {
-            Book book = new Book()
-            {
-                Title = title,
-                Author = new Author()
-                {
-                    FirstName = firstName,
-                    LastName = lastName
-                },
-                NumberOfPages = numberOfPages,
-                //Genre = genre
-            };
-
-            library.Add(book);
-        }
-
-
-        /// <summary>
-        /// Displays all books inside of book bag
-        /// </summary>
-        /// <param name="bookBag">Book bag to display books from</ param>
-        private static void ViewBooks(Library<Book> library)
-        {
-            foreach (Book book in library)
-            {
-                Console.Write($"{book.Title} - {book.Author.FirstName} {book.Author.LastName}");
-                Console.WriteLine();
-            }
         }
     }
 }

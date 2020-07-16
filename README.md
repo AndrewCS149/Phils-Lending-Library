@@ -30,3 +30,5 @@ Clone this repository to your local machine:
 ---
 
 ### Change Log
+1.2 Load bookbag with inital books - July 15 2020
+1.1 Created menu - July 15 2020

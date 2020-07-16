@@ -33,16 +33,50 @@ namespace PhilsLendingLibrary.Classes
         /// <summary>
         /// Removes a book from the library
         /// </summary>
-        /// <param name="idx">Index of the book to remove</param>
-        //public void Remove(int idx)
-        //{
-        //    T[] temp;
-        //    if(count < (items.Length / 2))
-        //        temp = new T[count - 1];
-        //    else
-        //        temp = new T[items.Length];
-        //    items = temp;
-        //}
+        /// <param name="item">Index of the book to remove</param>
+        /// <returns>The removed book</returns>
+        public T Remove(T item)
+        {
+            T[] temp;
+            int tempCount = 0;
+            T removed = default(T);
+
+            if (InLibrary(item))
+            {
+                if (count < (items.Length / 2))
+                    temp = new T[count - 1];
+                else
+                    temp = new T[items.Length];
+
+                for (int i = 0; i < count; i++)
+                {
+                    if (items[i] != null)
+                    {
+                        if (!items[i].Equals(item))
+                        {
+                            temp[tempCount] = items[i];
+                            tempCount++;
+                        } 
+                        else
+                            removed = items[i];
+                    }
+                }
+
+                items = temp;
+                count--;
+            }
+            return removed;
+        }
+
+        public bool InLibrary(T book)
+        {
+            foreach (T item in items)
+            {
+                if (item.Equals(book) && item != null)
+                    return true;
+            }
+            return false;
+        }
 
         public IEnumerator<T> GetEnumerator()
         {

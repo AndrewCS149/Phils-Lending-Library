@@ -37,6 +37,7 @@ namespace PhilsLendingLibrary
             {
                 if (book.Title.ToLower() == title.ToLower())
                 {
+                    library.Remove(book);
                     bookBag.Add(book);
                     return;
                 }

@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using PhilsLendingLibrary.Classes;
+using static PhilsLendingLibrary.Program;
+
 
 namespace PhilsLendingLibrary.Classes
 {
@@ -14,17 +16,63 @@ namespace PhilsLendingLibrary.Classes
         public int NumberOfPages { get; set; }
         public enum Genre : byte
         {
-            //Crime,
-            //Drama,
-            //Fantasy,
-            //Horror,
-            //Mystery,
-            //Romance,
-            //SciFi,
-            //Western,
-            //Fiction,
-            //NonFiction,
-            //SelfCare
+            Crime = 1,
+            Drama,
+            Fantasy,
+            Horror,
+            Mystery,
+            Romance,
+            SciFi,
+            Western,
+            Fiction,
+            NonFiction,
+            SelfCare
+        }
+
+        /// <summary>
+        /// Retrieve the book details to add to the book bag
+        /// </summary>
+        /// <param name="library">Library to pull from</param>
+        /// <param name="bookBag">Book bag to add to</param>
+        public static void GetBookBagDetails(Library<Book> library, List<Book> bookBag)
+        {
+            Console.Write("Enter the title: ");
+            string title = Console.ReadLine();
+            Borrow(title, library, bookBag);
+        }
+
+        /// <summary>
+        /// Retrieve the book details from the user
+        /// </summary>
+        /// <param name="library">The library to add the book to</param>
+        public static void GetBookDetails(Library<Book> library)
+        {
+            Console.Write("Enter the title: ");
+            string title = Console.ReadLine();
+            Console.Write("Enter the author's first name: ");
+            string first = Console.ReadLine();
+            Console.Write("Enter the author's first name: ");
+            string last = Console.ReadLine();
+            Console.Write("Enter the number of pages: ");
+            int pages = int.Parse(Console.ReadLine());
+            Console.WriteLine("Select Genre: ");
+            DisplayGenres();
+            Console.ReadLine();
+
+            AddABook(title, first, last, pages, library);
+        }
+
+        /// <summary>
+        /// Displays a selection of genres
+        /// </summary>
+        public static void DisplayGenres()
+        {
+            int count = 1;
+            foreach (var i in Enum.GetValues(typeof(Genre)))
+            {
+                Console.WriteLine($"{count}: {i}");
+                count++;
+            }
         }
 
         /// <summary>

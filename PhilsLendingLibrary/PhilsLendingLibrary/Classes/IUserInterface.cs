@@ -64,35 +64,5 @@ namespace PhilsLendingLibrary.Classes
                     break;
             }
         }
-        
-        /// <summary>
-        /// Retrieve the book details to add to the book bag
-        /// </summary>
-        /// <param name="library">Library to pull from</param>
-        /// <param name="bookBag">Book bag to add to</param>
-        private static void GetBookBagDetails(Library<Book> library, List<Book> bookBag)
-        {
-            Console.Write("Enter the title: ");
-            string title = Console.ReadLine();
-            Borrow(title, library, bookBag);
-        }
-
-        /// <summary>
-        /// Retrieve the book details from the user
-        /// </summary>
-        /// <param name="library">The library to add the book to</param>
-        private static void GetBookDetails(Library<Book> library)
-        {
-            Console.Write("Enter the title: ");
-            string title = Console.ReadLine();
-            Console.Write("Enter the author's first name: ");
-            string first = Console.ReadLine();
-            Console.Write("Enter the author's first name: ");
-            string last = Console.ReadLine();
-            Console.Write("Enter the number of pages: ");
-            int pages = int.Parse(Console.ReadLine());
-
-            AddABook(title, first, last, pages, library);
-        }
     }
 }

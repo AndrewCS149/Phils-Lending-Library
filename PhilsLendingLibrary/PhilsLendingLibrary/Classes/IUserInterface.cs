@@ -59,5 +59,17 @@ namespace PhilsLendingLibrary.Classes
                     break;
             }
         }
+
+        /// <summary>
+        /// Displays all books inside of book bag
+        /// </summary>
+        /// <param name="bookBag">Book bag to display books from</param>
+        private static void DisplayBooks(List<Book> bookBag)
+        {
+            foreach (Book book in bookBag)
+            {
+                Console.WriteLine(book);
+            }
+        }
     }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
+using PhilsLendingLibrary.Classes;
 
 namespace PhilsLendingLibrary.Classes
 {
@@ -12,18 +14,20 @@ namespace PhilsLendingLibrary.Classes
         public int NumberOfPages { get; set; }
         public enum Genre : byte
         {
-            Crime,
-            Drama,
-            Fantasy,
-            Horror,
-            Mystery,
-            Romance,
-            SciFi,
-            Western,
-            Fiction,
-            NonFiction,
-            SelfCare
+            //Crime,
+            //Drama,
+            //Fantasy,
+            //Horror,
+            //Mystery,
+            //Romance,
+            //SciFi,
+            //Western,
+            //Fiction,
+            //NonFiction,
+            //SelfCare
         }
+
+        //public int count = 0;
 
         //static void ReturnBook()
         //{
@@ -54,10 +58,10 @@ namespace PhilsLendingLibrary.Classes
         //            LastName = lastName
         //        },
         //        NumberOfPages = numberOfPages,
-        //        Genre = genre
-        //    };
+        //        Genre = (genre)0;
+        //};
 
-        //    Library.Add(book);
-        //}
+        //Library.Add(book);
     }
 }
+

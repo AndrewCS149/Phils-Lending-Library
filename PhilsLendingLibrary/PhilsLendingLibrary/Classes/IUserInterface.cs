@@ -11,10 +11,15 @@ namespace PhilsLendingLibrary.Classes
         /// </summary>
         public static void DisplayMenu(Library<Book> library)
         {
-            Menu();
-            string option = Console.ReadLine();
-            Selection(option, library);
+            string option = "";
+            while (option != "6")
+            {
+                Menu();
+                option = Console.ReadLine();
+                Selection(option, library);
+            }
 
+            Console.WriteLine("Thank you for using Phil's Lending Library!");
         }
 
         /// <summary>
@@ -43,6 +48,7 @@ namespace PhilsLendingLibrary.Classes
                     ViewBooks(library);
                     break;
                 case "2":
+                    GetBookDetails(library);
                     Console.WriteLine("Add book");
                     break;
                 case "3":
@@ -59,6 +65,39 @@ namespace PhilsLendingLibrary.Classes
                     break;
             }
         }
+
+        private static void GetBookDetails(Library<Book> library)
+        {
+            Console.Write("Enter the title: ");
+            string title = Console.ReadLine();
+            Console.Write("Enter the author's first name: ");
+            string first = Console.ReadLine();
+            Console.Write("Enter the author's first name: ");
+            string last = Console.ReadLine();
+            Console.Write("Enter the number of pages: ");
+            int pages = int.Parse(Console.ReadLine());
+
+            AddABook(title, first, last, pages, library);
+        }
+
+
+        static void AddABook(string title, string firstName, string lastName, int numberOfPages, Library<Book> library)
+        {
+            Book book = new Book()
+            {
+                Title = title,
+                Author = new Author()
+                {
+                    FirstName = firstName,
+                    LastName = lastName
+                },
+                NumberOfPages = numberOfPages,
+                //Genre = genre
+            };
+
+            library.Add(book);
+        }
+
 
         /// <summary>
         /// Displays all books inside of book bag

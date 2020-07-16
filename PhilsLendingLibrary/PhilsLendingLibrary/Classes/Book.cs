@@ -60,9 +60,9 @@ namespace PhilsLendingLibrary.Classes
             Console.Write("Enter the number of pages: ");
             string pageInput = Console.ReadLine();
 
-            // validate page input
             int pages;
             bool validInput = Int32.TryParse(pageInput, out pages);
+            // validate page input
             while (!validInput || pages <= 0)
             {
                 Console.WriteLine("Invalid input");
@@ -77,22 +77,23 @@ namespace PhilsLendingLibrary.Classes
             // get genre selection from user
             string selection = Console.ReadLine();
             int result;
-            if (Int32.TryParse(selection, out result))
+            bool validGenre = Int32.TryParse(selection, out result);
+
+            // validation for user input
+            while(!validGenre || (result < 1 || result > 11))
             {
-                if (result < 1 || result > 11)
-                {
-                    Console.WriteLine("Invalid selection");
-                    Console.WriteLine("Select Genre: ");
-                    DisplayGenres();
-                }
-            }
-            else
-            {
-                Console.WriteLine("Invalid selection");
+                Console.Clear();
+                Console.WriteLine("Invalid selection.");
+                Console.WriteLine();
                 Console.WriteLine("Select Genre: ");
                 DisplayGenres();
+                selection = Console.ReadLine();
+                validGenre = Int32.TryParse(selection, out result);
             }
+
+            // genre choice result
             genre genreChoice = GenreSelection(result);
+
             AddABook(title, first, last, pages, library, genreChoice);
             Console.Clear();
         }
@@ -206,7 +207,7 @@ namespace PhilsLendingLibrary.Classes
             {
                 // create key value pair dict
                 Dictionary<int, Book> books = new Dictionary<int, Book>();
-                Console.WriteLine("Which book would you like to return");
+                Console.WriteLine("Which book would you like to return:");
                 int counter = 1;
 
                 // display all items in book bag
@@ -214,7 +215,6 @@ namespace PhilsLendingLibrary.Classes
                 {
                     books.Add(counter, item);
                     Console.WriteLine($"{counter++}. {item.Title} - {item.Genre} - {item.Author.FirstName} {item.Author.LastName}");
-
                 }
 
                 // store user choice

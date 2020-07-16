@@ -5,12 +5,16 @@ using System.Text;
 
 namespace PhilsLendingLibrary.Classes
 {
-    public class Library<Book> : IEnumerable<Book>
+    public class Library<T> : IEnumerable<T>
     {
-        Book[] items = new Book[5];
+        T[] items = new T[5];
         int count;
 
-        public void Add(Book item)
+        /// <summary>
+        /// Adds more space to the list if necessary 
+        /// </summary>
+        /// <param name="item">The list to add space to</param>
+        public void Add(T item)
         {
             // evaluate the length of items vs the count
             if (count == items.Length)
@@ -26,12 +30,21 @@ namespace PhilsLendingLibrary.Classes
             return count;
         }
 
-        public void Remove(string title)
-        {
-            //T[] 
-        }
+        /// <summary>
+        /// Removes a book from the library
+        /// </summary>
+        /// <param name="idx">Index of the book to remove</param>
+        //public void Remove(int idx)
+        //{
+        //    T[] temp;
+        //    if(count < (items.Length / 2))
+        //        temp = new T[count - 1];
+        //    else
+        //        temp = new T[items.Length];
+        //    items = temp;
+        //}
 
-        public IEnumerator<Book> GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
             for (int i = 0; i < count; i++)
             {

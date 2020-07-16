@@ -37,7 +37,8 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="bookBag">Book bag to add to</param>
         public static void GetBookBagDetails(Library<Book> library, List<Book> bookBag)
         {
-            Console.Write("Enter the title: ");
+            ViewBooks(library);
+            Console.Write("Enter the title of the book you would like to borrow: ");
             string title = Console.ReadLine();
             Borrow(title, library, bookBag);
         }
@@ -48,21 +49,35 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="library">The library to add the book to</param>
         public static void GetBookDetails(Library<Book> library)
         {
+            Console.Clear();
             Console.Write("Enter the title: ");
             string title = Console.ReadLine();
             Console.Write("Enter the author's first name: ");
             string first = Console.ReadLine();
             Console.Write("Enter the author's first name: ");
             string last = Console.ReadLine();
+
             Console.Write("Enter the number of pages: ");
-            int pages = int.Parse(Console.ReadLine());
+            string pageInput = Console.ReadLine();
+
+            // validate page input
+            int pages;
+            bool validInput = Int32.TryParse(pageInput, out pages);
+            while(!validInput || pages <= 0)
+            {
+                Console.WriteLine("Invalid input");
+                Console.Write("Enter the number of pages: ");
+                pageInput = Console.ReadLine();
+                validInput = Int32.TryParse(pageInput, out pages);
+            }
+
             Console.WriteLine("Select Genre: ");
             DisplayGenres();
 
             // get genre selection from user
             string selection = Console.ReadLine();
             int result;
-            if(Int32.TryParse(selection, out result))
+            if (Int32.TryParse(selection, out result))
             {
                 if (result < 1 || result > 11)
                 {
@@ -70,7 +85,8 @@ namespace PhilsLendingLibrary.Classes
                     Console.WriteLine("Select Genre: ");
                     DisplayGenres();
                 }
-            } else
+            }
+            else
             {
                 Console.WriteLine("Invalid selection");
                 Console.WriteLine("Select Genre: ");
@@ -78,6 +94,7 @@ namespace PhilsLendingLibrary.Classes
             }
             genre genreChoice = GenreSelection(result);
             AddABook(title, first, last, pages, library, genreChoice);
+            Console.Clear();
         }
 
         /// <summary>
@@ -87,7 +104,7 @@ namespace PhilsLendingLibrary.Classes
         /// <returns>The selected genre</returns>
         public static genre GenreSelection(int choice)
         {
-            switch(choice)
+            switch (choice)
             {
                 case 1:
                     return genre.Crime;
@@ -149,22 +166,24 @@ namespace PhilsLendingLibrary.Classes
                 NumberOfPages = numberOfPages,
                 Genre = genre
             };
-
             library.Add(book);
         }
 
 
         /// <summary>
-        /// Displays all books inside of book bag
+        /// Displays all books inside of library
         /// </summary>
-        /// <param name="bookBag">Book bag to display books from</ param>
+        /// <param name="bookBag">Library to display books from</ param>
         public static void ViewBooks(Library<Book> library)
         {
+            Console.Clear();
+            int count = 1;
             foreach (Book book in library)
             {
-                Console.Write($"{book.Title} - {book.Genre} - {book.Author.FirstName} {book.Author.LastName}");
+                Console.Write($"{count++}) {book.Title} - {book.Genre} - {book.Author.FirstName} {book.Author.LastName}");
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
 
         /// <summary>

@@ -44,7 +44,6 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="option">The option selected</param>
         private static void Selection(string option, Library<Book> library, List<Book> bookBag)
         {
-            Console.Clear();
             switch (option)
             {
                 case "1":

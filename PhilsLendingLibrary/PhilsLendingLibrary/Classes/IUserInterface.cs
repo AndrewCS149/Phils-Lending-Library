@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static PhilsLendingLibrary.Program;
 
 namespace PhilsLendingLibrary.Classes
 {
@@ -9,14 +10,14 @@ namespace PhilsLendingLibrary.Classes
         /// <summary>
         /// Displays the menu to the user
         /// </summary>
-        public static void DisplayMenu(Library<Book> library)
+        public static void DisplayMenu(Library<Book> library, List<Book> bookBag)
         {
             string option = "";
             while (option != "6")
             {
                 Menu();
                 option = Console.ReadLine();
-                Selection(option, library);
+                Selection(option, library, bookBag);
             }
 
             Console.WriteLine("Thank you for using Phil's Lending Library!");
@@ -40,8 +41,9 @@ namespace PhilsLendingLibrary.Classes
         /// Navigates user to appropriate methods based on their selection
         /// </summary>
         /// <param name="option">The option selected</param>
-        private static void Selection(string option, Library<Book> library)
+        private static void Selection(string option, Library<Book> library, List<Book> bookBag)
         {
+            Console.Clear();
             switch (option)
             {
                 case "1":
@@ -52,20 +54,33 @@ namespace PhilsLendingLibrary.Classes
                     Console.WriteLine("Add book");
                     break;
                 case "3":
-                    Console.WriteLine("Borrow");
+                    GetBookBagDetails(library, bookBag);
                     break;
                 case "4":
                     Console.WriteLine("Return");
                     break;
                 case "5":
-                    Console.WriteLine("View book bag");
-                    break;
-                case "6":
-                    Console.WriteLine("Exit");
+                    ViewBookBag(bookBag);
                     break;
             }
         }
+        
+        /// <summary>
+        /// Retrieve the book details to add to the book bag
+        /// </summary>
+        /// <param name="library">Library to pull from</param>
+        /// <param name="bookBag">Book bag to add to</param>
+        private static void GetBookBagDetails(Library<Book> library, List<Book> bookBag)
+        {
+            Console.Write("Enter the title: ");
+            string title = Console.ReadLine();
+            Borrow(title, library, bookBag);
+        }
 
+        /// <summary>
+        /// Retrieve the book details from the user
+        /// </summary>
+        /// <param name="library">The library to add the book to</param>
         private static void GetBookDetails(Library<Book> library)
         {
             Console.Write("Enter the title: ");
@@ -80,7 +95,14 @@ namespace PhilsLendingLibrary.Classes
             AddABook(title, first, last, pages, library);
         }
 
-
+        /// <summary>
+        /// Adds a book to the users current library
+        /// </summary>
+        /// <param name="title">Title of book</param>
+        /// <param name="firstName">First name of author</param>
+        /// <param name="lastName">Last name of author</param>
+        /// <param name="numberOfPages">Number of pages</param>
+        /// <param name="library">Library to add book to</param>
         static void AddABook(string title, string firstName, string lastName, int numberOfPages, Library<Book> library)
         {
             Book book = new Book()

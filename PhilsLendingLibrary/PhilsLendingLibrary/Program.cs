@@ -10,19 +10,50 @@ namespace PhilsLendingLibrary
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            List<Book> book = new List<Book>();
-            Library<Book> library = new Library<Book>();
-
-            LoadBooks(library);
-            DisplayMenu(library);
-        }
-
         public Library<Book> Library { get; set; }
         public List<Book> BookBag { get; set; }
 
+        static void Main(string[] args)
+        {
+            List<Book> bookBag = new List<Book>();
+            Library<Book> library = new Library<Book>();
 
+            LoadBooks(library);
+            DisplayMenu(library, bookBag);
+        }
+
+        /// <summary>
+        /// Adds a book from the library to the book bag
+        /// </summary>
+        /// <param name="title">Title of book</param>
+        /// <param name="library">Library to pull book from</param>
+        /// <param name="bookBag">Book bag to add to</param>
+        public static void Borrow(string title, Library<Book> library, List<Book> bookBag)
+        {
+            foreach (Book book in library)
+            {
+                if(book.Title == title)
+                {
+                    Book newBook = new Book();
+                    newBook.Title = title;
+                    bookBag.Add(newBook);
+                }
+                else
+                    Console.WriteLine("That book isn't in our library".);
+            }
+        }
+
+        /// <summary>
+        /// View all the books in the book bag
+        /// </summary>
+        /// <param name="bookBag">The book bag to view</param>
+        public static void ViewBookBag(List<Book> bookBag)
+        {
+            foreach (Book book in bookBag)
+            {
+                Console.WriteLine(book.Title);
+            }
+        }
 
         /// <summary>
         /// Prepares initial books to load into bookbag
@@ -92,23 +123,6 @@ namespace PhilsLendingLibrary
         //    books.TryGetValue(selection, out Book returnedBook);
         //    bookBag.Remove(returnedBook);
         //    library.Add(returnedBook);
-        //}
-
-        //static void AddABook(string title, string firstName, string lastName, int numberOfPages, Genre genre, Library<Book> library)
-        //{
-        //    Book book = new Book()
-        //    {
-        //        Title = title,
-        //        Author = new Author()
-        //        {
-        //            FirstName = firstName,
-        //            LastName = lastName
-        //        },
-        //        NumberOfPages = numberOfPages,
-        //        Genre = genre
-        //    };
-
-        //    library.Add(book);
         //}
     }
 }

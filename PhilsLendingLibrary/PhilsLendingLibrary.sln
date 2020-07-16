@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhilsLendingLibrary", "PhilsLendingLibrary\PhilsLendingLibrary.csproj", "{1FCF0CA2-C3F4-4558-B965-4F788104FFCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FCF0CA2-C3F4-4558-B965-4F788104FFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FCF0CA2-C3F4-4558-B965-4F788104FFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FCF0CA2-C3F4-4558-B965-4F788104FFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FCF0CA2-C3F4-4558-B965-4F788104FFCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5902E46D-76E5-40F1-97B1-94AAE4879A33}
+	EndGlobalSection
+EndGlobal

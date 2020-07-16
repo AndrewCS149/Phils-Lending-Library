@@ -28,7 +28,7 @@ namespace PhilsLendingLibrary.Classes
 
         public void Remove(string title)
         {
-
+            //T[] 
         }
 
         public IEnumerator<Book> GetEnumerator()

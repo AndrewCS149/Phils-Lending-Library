@@ -68,6 +68,7 @@ namespace PhilsLendingLibrary
                     DOB = new DateTime(1892, 1, 03)
                 },
 
+                Genre = genre.Fantasy,
                 Title = "Fellowship of the Ring",
                 NumberOfPages = 350,
             };
@@ -81,6 +82,7 @@ namespace PhilsLendingLibrary
                     DOB = new DateTime(1892, 1, 03)
                 },
 
+                Genre = genre.Fantasy,
                 Title = "The Two Towers",
                 NumberOfPages = 350,
             };
@@ -94,6 +96,7 @@ namespace PhilsLendingLibrary
                     DOB = new DateTime(1892, 1, 03)
                 },
 
+                Genre = genre.Fantasy,
                 Title = "Return of the King",
                 NumberOfPages = 350,
             };

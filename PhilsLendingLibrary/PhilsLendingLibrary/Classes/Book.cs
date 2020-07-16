@@ -14,7 +14,8 @@ namespace PhilsLendingLibrary.Classes
         public string Title { get; set; }
         public Author Author { get; set; }
         public int NumberOfPages { get; set; }
-        public enum Genre : byte
+        public genre Genre { get; set; }
+        public enum genre : byte
         {
             Crime = 1,
             Drama,
@@ -57,18 +58,70 @@ namespace PhilsLendingLibrary.Classes
             int pages = int.Parse(Console.ReadLine());
             Console.WriteLine("Select Genre: ");
             DisplayGenres();
-            Console.ReadLine();
 
-            AddABook(title, first, last, pages, library);
+            // get genre selection from user
+            string selection = Console.ReadLine();
+            int result;
+            if(Int32.TryParse(selection, out result))
+            {
+                if (result < 1 || result > 11)
+                {
+                    Console.WriteLine("Invalid selection");
+                    Console.WriteLine("Select Genre: ");
+                    DisplayGenres();
+                }
+            } else
+            {
+                Console.WriteLine("Invalid selection");
+                Console.WriteLine("Select Genre: ");
+                DisplayGenres();
+            }
+            genre genreChoice = GenreSelection(result);
+            AddABook(title, first, last, pages, library, genreChoice);
+        }
+
+        /// <summary>
+        /// Controls which genre choice is selected
+        /// </summary>
+        /// <param name="choice">The user choice</param>
+        /// <returns>The selected genre</returns>
+        public static genre GenreSelection(int choice)
+        {
+            switch(choice)
+            {
+                case 1:
+                    return genre.Crime;
+                case 2:
+                    return genre.Drama;
+                case 3:
+                    return genre.Fantasy;
+                case 4:
+                    return genre.Horror;
+                case 5:
+                    return genre.Mystery;
+                case 6:
+                    return genre.Romance;
+                case 7:
+                    return genre.SciFi;
+                case 8:
+                    return genre.Western;
+                case 9:
+                    return genre.Fiction;
+                case 10:
+                    return genre.NonFiction;
+                case 11:
+                    return genre.SelfCare;
+            }
+            return genre.Crime;
         }
 
         /// <summary>
         /// Displays a selection of genres
         /// </summary>
-        public static void DisplayGenres()
+        private static void DisplayGenres()
         {
             int count = 1;
-            foreach (var i in Enum.GetValues(typeof(Genre)))
+            foreach (var i in Enum.GetValues(typeof(genre)))
             {
                 Console.WriteLine($"{count}: {i}");
                 count++;
@@ -83,7 +136,7 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="lastName">Last name of author</param>
         /// <param name="numberOfPages">Number of pages</param>
         /// <param name="library">Library to add book to</param>
-        public static void AddABook(string title, string firstName, string lastName, int numberOfPages, Library<Book> library)
+        public static void AddABook(string title, string firstName, string lastName, int numberOfPages, Library<Book> library, genre genre)
         {
             Book book = new Book()
             {
@@ -94,7 +147,7 @@ namespace PhilsLendingLibrary.Classes
                     LastName = lastName
                 },
                 NumberOfPages = numberOfPages,
-                //Genre = genre
+                Genre = genre
             };
 
             library.Add(book);
@@ -109,7 +162,7 @@ namespace PhilsLendingLibrary.Classes
         {
             foreach (Book book in library)
             {
-                Console.Write($"{book.Title} - {book.Author.FirstName} {book.Author.LastName}");
+                Console.Write($"{book.Title} - {book.Genre} - {book.Author.FirstName} {book.Author.LastName}");
                 Console.WriteLine();
             }
         }

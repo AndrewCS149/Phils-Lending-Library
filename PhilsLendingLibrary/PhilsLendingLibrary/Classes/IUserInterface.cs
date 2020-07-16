@@ -9,11 +9,11 @@ namespace PhilsLendingLibrary.Classes
         /// <summary>
         /// Displays the menu to the user
         /// </summary>
-        public static void DisplayMenu()
+        public static void DisplayMenu(Library<Book> library)
         {
             Menu();
             string option = Console.ReadLine();
-            Selection(option);
+            Selection(option, library);
 
         }
 
@@ -35,12 +35,12 @@ namespace PhilsLendingLibrary.Classes
         /// Navigates user to appropriate methods based on their selection
         /// </summary>
         /// <param name="option">The option selected</param>
-        private static void Selection(string option)
+        private static void Selection(string option, Library<Book> library)
         {
             switch (option)
             {
                 case "1":
-                    Console.WriteLine("view all books");
+                    ViewBooks(library);
                     break;
                 case "2":
                     Console.WriteLine("Add book");
@@ -63,12 +63,13 @@ namespace PhilsLendingLibrary.Classes
         /// <summary>
         /// Displays all books inside of book bag
         /// </summary>
-        /// <param name="bookBag">Book bag to display books from</param>
-        private static void DisplayBooks(List<Book> bookBag)
+        /// <param name="bookBag">Book bag to display books from</ param>
+        private static void ViewBooks(Library<Book> library)
         {
-            foreach (Book book in bookBag)
+            foreach (Book book in library)
             {
-                Console.WriteLine(book);
+                Console.Write($"{book.Title} - {book.Author.FirstName} {book.Author.LastName}");
+                Console.WriteLine();
             }
         }
     }

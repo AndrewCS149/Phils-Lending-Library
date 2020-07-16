@@ -15,7 +15,8 @@ namespace PhilsLendingLibrary
             List<Book> book = new List<Book>();
             Library<Book> library = new Library<Book>();
 
-            DisplayMenu();
+            LoadBooks(library);
+            DisplayMenu(library);
         }
 
         public Library<Book> Library { get; set; }
@@ -27,7 +28,7 @@ namespace PhilsLendingLibrary
         /// Prepares initial books to load into bookbag
         /// </summary>
         /// <param name="book">bookBag to load books into</param>
-        static void LoadBooks(List<Book> bookBag)
+        static void LoadBooks(Library<Book> library)
         {
             Book book1 = new Book()
             {
@@ -68,9 +69,9 @@ namespace PhilsLendingLibrary
                 NumberOfPages = 350,
             };
 
-            bookBag.Add(book1);
-            bookBag.Add(book2);
-            bookBag.Add(book3);
+            library.Add(book1);
+            library.Add(book2);
+            library.Add(book3);
         }
 
 

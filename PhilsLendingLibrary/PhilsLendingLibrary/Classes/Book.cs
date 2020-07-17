@@ -37,10 +37,22 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="bookBag">Book bag to add to</param>
         public static void GetBookBagDetails(Library<Book> library, List<Book> bookBag)
         {
-            ViewBooks(library);
-            Console.Write("Enter the title of the book you would like to borrow: ");
-            string title = Console.ReadLine();
-            Borrow(title, library, bookBag);
+            // if library is empty
+            if (library.Count() == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("The library is empty.");
+                Thread.Sleep(2500);
+                Console.Clear();
+            }
+            // if library is not empty
+            else
+            {
+                ViewBooks(library);
+                Console.Write("Enter the title of the book you would like to borrow: ");
+                string title = Console.ReadLine();
+                Borrow(title, library, bookBag);
+            }
         }
 
         /// <summary>
@@ -80,7 +92,7 @@ namespace PhilsLendingLibrary.Classes
             bool validGenre = Int32.TryParse(selection, out result);
 
             // validation for user input
-            while(!validGenre || (result < 1 || result > 11))
+            while (!validGenre || (result < 1 || result > 11))
             {
                 Console.Clear();
                 Console.WriteLine("Invalid selection.");
@@ -177,14 +189,24 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="bookBag">Library to display books from</ param>
         public static void ViewBooks(Library<Book> library)
         {
-            Console.Clear();
-            int count = 1;
-            foreach (Book book in library)
+            // if library is empty
+            if (library.Count() == 0)
             {
-                Console.Write($"{count++}) {book.Title} - {book.Genre} - {book.Author.FirstName} {book.Author.LastName}");
+                Console.Clear();
+                Console.WriteLine("The library is empty.");
+                Thread.Sleep(2500);
+                Console.Clear();
+            }
+            // if library is not empty
+            else
+            {
+                int count = 1;
+                foreach (Book book in library)
+                {
+                    Console.WriteLine($"{count++}) {book.Title} - {book.Genre} - {book.Author.FirstName} {book.Author.LastName}");
+                }
                 Console.WriteLine();
             }
-            Console.WriteLine();
         }
 
         /// <summary>
@@ -194,6 +216,8 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="bookBag">Book bag to remove from</param>
         public static void ReturnBook(Library<Book> library, List<Book> bookBag)
         {
+            //Console.Clear();
+
             // If book bag is empty
             if (bookBag.Count == 0)
             {
@@ -236,6 +260,7 @@ namespace PhilsLendingLibrary.Classes
                 bookBag.Remove(returnedBook);
                 // Add the book back to library
                 library.Add(returnedBook);
+                Console.Clear();
             }
 
         }

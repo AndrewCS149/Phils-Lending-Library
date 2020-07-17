@@ -54,11 +54,20 @@ namespace PhilsLendingLibrary
         /// <param name="bookBag">The book bag to view</param>
         public static void ViewBookBag(List<Book> bookBag)
         {
-            foreach (Book book in bookBag)
+            if (bookBag.Count == 0)
             {
-                Console.WriteLine(book.Title);
+                Console.WriteLine("Your book bag is empty.");
+                Thread.Sleep(2000);
             }
-            Console.WriteLine();
+            else
+            {
+                int count = 1;
+                foreach (Book book in bookBag)
+                {
+                    Console.WriteLine($"{count++}) {book.Title} - {book.Genre} - {book.Author.FirstName} {book.Author.LastName}");
+                }
+                Console.WriteLine();
+            }
         }
 
         /// <summary>

@@ -30,6 +30,10 @@ Clone this repository to your local machine:
 ---
 
 ### Change Log
+1.15 Fully functioning application - July 16 2020
+1.14 Bug Fixes - July 16 2020
+1.13 ExitMessage() - July 16 2020
+1.12 RemoveBook() - July 16 2020
 1.11 GenreSelection() - July 16 2020
 1.10 DisplayGenres() - July 16 2020
 1.9 ReturnBook() - July 16 2020

@@ -47,18 +47,22 @@ namespace PhilsLendingLibrary.Classes
             switch (option)
             {
                 case "1":
+                    Console.Clear();
                     ViewBooks(library);
                     break;
                 case "2":
                     GetBookDetails(library);
                     break;
                 case "3":
+                    Console.Clear();
                     GetBookBagDetails(library, bookBag);
                     break;
                 case "4":
+                    Console.Clear();
                     ReturnBook(library, bookBag);
                     break;
                 case "5":
+                    Console.Clear();
                     ViewBookBag(bookBag);
                     break;
             }

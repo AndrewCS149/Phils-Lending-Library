@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Text;
 using System.Threading;
 using PhilsLendingLibrary.Classes;
@@ -168,6 +169,7 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="library">Library to add book to</param>
         public static void AddABook(string title, string firstName, string lastName, int numberOfPages, Library<Book> library, genre genre)
         {
+            // create new book instance and fill out properties
             Book book = new Book()
             {
                 Title = title,
@@ -179,6 +181,7 @@ namespace PhilsLendingLibrary.Classes
                 NumberOfPages = numberOfPages,
                 Genre = genre
             };
+            // add to library
             library.Add(book);
         }
 

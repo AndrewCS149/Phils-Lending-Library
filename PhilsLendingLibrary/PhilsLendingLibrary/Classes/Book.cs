@@ -65,8 +65,10 @@ namespace PhilsLendingLibrary.Classes
             Console.Clear();
             Console.Write("Enter the title: ");
             string title = Console.ReadLine();
+
             Console.Write("Enter the author's first name: ");
             string first = Console.ReadLine();
+
             Console.Write("Enter the author's first name: ");
             string last = Console.ReadLine();
 
@@ -92,7 +94,7 @@ namespace PhilsLendingLibrary.Classes
             int result;
             bool validGenre = Int32.TryParse(selection, out result);
 
-            // validation for user input
+            // validation genre selection
             while (!validGenre || (result < 1 || result > 11))
             {
                 Console.Clear();
@@ -107,6 +109,7 @@ namespace PhilsLendingLibrary.Classes
             // genre choice result
             genre genreChoice = GenreSelection(result);
 
+            // library
             AddABook(title, first, last, pages, library, genreChoice);
             Console.Clear();
         }
@@ -143,6 +146,8 @@ namespace PhilsLendingLibrary.Classes
                 case 11:
                     return genre.SelfCare;
             }
+
+            // this cannot be reached, it is here to full fill all code paths returning a value
             return genre.Crime;
         }
 
@@ -185,6 +190,44 @@ namespace PhilsLendingLibrary.Classes
             library.Add(book);
         }
 
+        /// <summary>
+        /// Removes a book from the library
+        /// </summary>
+        /// <param name="library">The library to check</param>
+        public static void RemoveBook(Library<Book> library)
+        {
+            // if library is empty
+            if (library.Count() == 0)
+            {
+                Console.Clear();
+                Console.WriteLine("Library is empty");
+                Thread.Sleep(2500);
+            }
+            // if library is not empty
+            else
+            {
+                ViewBooks(library);
+                Console.Write("Enter the title of the book you would like to remove: ");
+                string removedBook = Console.ReadLine();
+
+                // loop through library to see if input matches an existing book
+                foreach (Book book in library)
+                {
+                    if (book.Title.ToLower() == removedBook.ToLower())
+                    {
+                        library.Remove(book);
+                        Console.Clear();
+                        return;
+                    }
+ 
+                }
+            }
+            Console.Clear();
+            Console.WriteLine("That book isn't in our library: Redirecting to home...");
+            Thread.Sleep(2500);
+            Console.Clear();
+        }
+
 
         /// <summary>
         /// Displays all books inside of library
@@ -219,8 +262,6 @@ namespace PhilsLendingLibrary.Classes
         /// <param name="bookBag">Book bag to remove from</param>
         public static void ReturnBook(Library<Book> library, List<Book> bookBag)
         {
-            //Console.Clear();
-
             // If book bag is empty
             if (bookBag.Count == 0)
             {

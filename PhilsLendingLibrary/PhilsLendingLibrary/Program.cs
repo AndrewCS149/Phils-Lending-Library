@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace PhilsLendingLibrary
 {
-    class Program
+    public class Program
     {
         public Library<Book> Library { get; set; }
         public List<Book> BookBag { get; set; }
@@ -74,7 +74,7 @@ namespace PhilsLendingLibrary
         /// Prepares initial books to load into bookbag
         /// </summary>
         /// <param name="book">bookBag to load books into</param>
-        static void LoadBooks(Library<Book> library)
+        public static void LoadBooks(Library<Book> library)
         {
             Book book1 = new Book()
             {

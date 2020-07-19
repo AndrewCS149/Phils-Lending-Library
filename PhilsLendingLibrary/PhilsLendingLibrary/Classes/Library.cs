@@ -44,7 +44,7 @@ namespace PhilsLendingLibrary.Classes
             if (InLibrary(item))
             {
                 // to prevent idx out of range errors, keep minimum size to 2
-                if(count <= 2)
+                if (count <= 2)
                 {
                     temp = new T[2];
                 }
@@ -61,7 +61,7 @@ namespace PhilsLendingLibrary.Classes
                         {
                             temp[tempCount] = items[i];
                             tempCount++;
-                        } 
+                        }
                         else
                             removed = items[i];
                     }
@@ -80,10 +80,17 @@ namespace PhilsLendingLibrary.Classes
         /// <returns>True if book is found, false if not</returns>
         public bool InLibrary(T book)
         {
-            foreach (T item in items)
+            try
             {
-                if (item.Equals(book) && item != null)
-                    return true;
+                foreach (T item in items)
+                {
+                    if (item.Equals(book) && item != null)
+                        return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
             }
             return false;
         }

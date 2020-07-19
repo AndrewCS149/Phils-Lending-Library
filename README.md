@@ -70,6 +70,7 @@ From project root directory, run:
 
 ### Change Log
 
+- 1.17 RemoveBook() - July 18 2020
 - 1.16 Add visuals to README - July 16 2020
 - 1.15 Fully functioning application - July 16 2020
 - 1.14 Bug Fixes - July 16 2020

@@ -15,7 +15,7 @@ namespace PhilsLendingLibrary.Classes
         public static void StartApplication(Library<Book> library, List<Book> bookBag)
         {
             string option = "";
-            while (option != "6")
+            while (option != "7")
             {
                 Menu();
                 option = Console.ReadLine();
@@ -32,10 +32,11 @@ namespace PhilsLendingLibrary.Classes
             Console.WriteLine("Please choose from the following options:");
             Console.WriteLine("1) View all Books");
             Console.WriteLine("2) Add a Book");
-            Console.WriteLine("3) Borrow a book");
-            Console.WriteLine("4) Return a book");
-            Console.WriteLine("5) View Book Bag");
-            Console.WriteLine("6) Exit");
+            Console.WriteLine("3) Remove a Book");
+            Console.WriteLine("4) Borrow a book");
+            Console.WriteLine("5) Return a book");
+            Console.WriteLine("6) View Book Bag");
+            Console.WriteLine("7) Exit");
         }
 
         /// <summary>
@@ -55,13 +56,17 @@ namespace PhilsLendingLibrary.Classes
                     break;
                 case "3":
                     Console.Clear();
-                    GetBookBagDetails(library, bookBag);
+                    RemoveBook(library);
                     break;
                 case "4":
                     Console.Clear();
-                    ReturnBook(library, bookBag);
+                    GetBookBagDetails(library, bookBag);
                     break;
                 case "5":
+                    Console.Clear();
+                    ReturnBook(library, bookBag);
+                    break;
+                case "6":
                     Console.Clear();
                     ViewBookBag(bookBag);
                     break;

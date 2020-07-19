@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static PhilsLendingLibrary.Program;
+using static PhilsLendingLibrary.Classes.Book;
+using System.Threading;
 
 namespace PhilsLendingLibrary.Classes
 {
@@ -9,12 +12,16 @@ namespace PhilsLendingLibrary.Classes
         /// <summary>
         /// Displays the menu to the user
         /// </summary>
-        public static void DisplayMenu()
+        public static void StartApplication(Library<Book> library, List<Book> bookBag)
         {
-            Menu();
-            string option = Console.ReadLine();
-            Selection(option);
-
+            string option = "";
+            while (option != "7")
+            {
+                Menu();
+                option = Console.ReadLine();
+                Selection(option, library, bookBag);
+            }
+            ExitMessage();
         }
 
         /// <summary>
@@ -25,51 +32,60 @@ namespace PhilsLendingLibrary.Classes
             Console.WriteLine("Please choose from the following options:");
             Console.WriteLine("1) View all Books");
             Console.WriteLine("2) Add a Book");
-            Console.WriteLine("3) Borrow a book");
-            Console.WriteLine("4) Return a book");
-            Console.WriteLine("5) View Book Bag");
-            Console.WriteLine("6) Exit");
+            Console.WriteLine("3) Remove a Book");
+            Console.WriteLine("4) Borrow a book");
+            Console.WriteLine("5) Return a book");
+            Console.WriteLine("6) View Book Bag");
+            Console.WriteLine("7) Exit");
         }
 
         /// <summary>
         /// Navigates user to appropriate methods based on their selection
         /// </summary>
         /// <param name="option">The option selected</param>
-        private static void Selection(string option)
+        private static void Selection(string option, Library<Book> library, List<Book> bookBag)
         {
             switch (option)
             {
                 case "1":
-                    Console.WriteLine("view all books");
+                    Console.Clear();
+                    ViewBooks(library);
                     break;
                 case "2":
-                    Console.WriteLine("Add book");
+                    GetBookDetails(library);
                     break;
                 case "3":
-                    Console.WriteLine("Borrow");
+                    Console.Clear();
+                    RemoveBook(library);
                     break;
                 case "4":
-                    Console.WriteLine("Return");
+                    Console.Clear();
+                    GetBookBagDetails(library, bookBag);
                     break;
                 case "5":
-                    Console.WriteLine("View book bag");
+                    Console.Clear();
+                    ReturnBook(library, bookBag);
                     break;
                 case "6":
-                    Console.WriteLine("Exit");
+                    Console.Clear();
+                    ViewBookBag(bookBag);
                     break;
             }
         }
 
         /// <summary>
-        /// Displays all books inside of book bag
+        /// Friendly goodbye message
         /// </summary>
-        /// <param name="bookBag">Book bag to display books from</param>
-        private static void DisplayBooks(List<Book> bookBag)
+        private static void ExitMessage()
         {
-            foreach (Book book in bookBag)
+            string goodBye = "Thank you for using Phil's Lending Library!\nHave a nice day.";
+
+            for (int i = 0; i < goodBye.Length; i++)
             {
-                Console.WriteLine(book);
+                Console.Write(goodBye[i]);
+                Thread.Sleep(50);
             }
+            Console.ReadLine();
         }
     }
 }

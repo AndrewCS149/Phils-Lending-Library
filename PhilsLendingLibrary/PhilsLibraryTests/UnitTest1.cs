@@ -163,27 +163,5 @@ namespace PhilsLibraryTests
             // assert
             Assert.Equal(3, booksInLibrary);
         }
-
-        //[Fact]
-        public void CannotRemoveBookFromLibraryThatDoesntExist()
-        {
-            // arrange
-            Library<Book> library = new Library<Book>();
-
-            Book book1 = new Book()
-            {
-                Author = new Author()
-                {
-                    FirstName = "John",
-                    LastName = "Tolkien",
-                    DOB = new DateTime(1892, 1, 03)
-                },
-                Genre = genre.Fantasy,
-                Title = "Fellowship of the Ring",
-                NumberOfPages = 350,
-            };
-
-
-        }
     }
 }

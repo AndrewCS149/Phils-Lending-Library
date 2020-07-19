@@ -228,7 +228,6 @@ namespace PhilsLendingLibrary.Classes
             Console.Clear();
         }
 
-
         /// <summary>
         /// Displays all books inside of library
         /// </summary>
